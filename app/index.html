@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>CarApp</title>
+
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="icon" href="img/favicon/favicon.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+	<div id='app' class=" container-fluid pt-4 pl-5 pr-5">
+		<div class="row">
+			<div class="col">
+				<h1> <strong> Cars Application</strong></h1>
+			</div>
+		</div>
+	
+	 	<div class="row pt-4">
+	  		<div class="col-md-3">
+	  			<label for="search">Find your car</label>
+	  			<input type="text" class="form-control" placeholder="Name, model..." id="search">
+	  			<hr>
+	  			<ul class="list-group">
+					  <li 
+					  	v-for="(car, index) in cars"
+					  	v-on:click="selectCar(index)"
+					  	v-bind:class="{active: activeCarIndex === index}"
+					  	class="list-group-item list-group-item-action pointer"
+					  	>{{ car.make }} {{ car.model }}</li>
+					</ul>
+
+
+	  		</div>
+	  		<div class="col-md-5 pl-5 car-img">
+	  			<h2>{{ car.make }} {{ car.model }}</h2>
+	  			<img v-bind:src= "car.img" class="img-responsive" v-bind:alt="car.make">
+	  		</div>
+
+
+	  		<div class="col-md-4">
+	  			<h3>Car details</h3>
+	  			<ul class='car-details-list'>
+	   				<li>Make: <strong> {{ car.make }} </strong></li>
+	  				<li>Model: <strong> {{ car.model }} </strong></li>
+	  				<li>Year: <strong> {{ car.year }} </strong></li>
+	  				<li>Vehicle type: <strong> {{ car.vType }} </strong></li>
+	  				<li>Fuel Type: <strong> {{ car.fType }} </strong></li>
+	  				<li>Color: <strong> {{ car.color }} </strong></li>
+	  				<li>Owner: <strong> {{ car.owner }} </strong></li>
+	  			</ul>
+	  			<h3>
+	  				<strong>Price: {{ car.price }} €</strong>
+	  			</h3>
+	  			<div class="phone-block">
+	  				<a
+			  			v-if="phoneVisibility"
+			  			v-bind:href="phoneLink"
+			  			class="phoneNumber" >{{ car.phone }}
+		  			</a>
+		  		</div>
+	  			<button 
+	  				v-on:click="phoneVisibility = !phoneVisibility"
+	  				v-text="phoneBtnText"
+	  				type="button"
+	  				class="btn btn-outline-success"
+	  				></button>
+	  			<button class="btn btn-primary ml-1" type="submit">Buy</button>
+	  		</div>
+	  	</div>
+		</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+	<script src="js/app.js"></script>
+
+</body>
+</html>
