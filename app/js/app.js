@@ -22,6 +22,7 @@ var app = new Vue({
 		car: cars[0],
 		activeCarIndex: 0,
 		phoneVisibility: false,
+		search: ''
 	},
 	methods: {
 		selectCar: function(index){
@@ -36,6 +37,13 @@ var app = new Vue({
 		},
 		phoneLink: function() {
 			return 'tel:' + this.car.phone
+		},
+		filteredCars() {
+			const self = this;
+			return this.cars.filter(function(car) {
+				return car.make.indexOf(self.search) > -1 || car.model.indexOf(self.search) > -1
+			})
+
 		}
 	}
 }) 
