@@ -32,3 +32,6 @@ body {
 
 .btn-outline-success {
   width: 150px; }
+
+.modal {
+  display: block; }
