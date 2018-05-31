@@ -33,6 +33,9 @@ body {
 .btn-outline-success {
   width: 150px; }
 
+.log-date {
+  float: right; }
+
 .modal {
   display: block; }
 

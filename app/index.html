@@ -82,7 +82,22 @@
 	  			<button  @click="modalVisibility = true" class="btn btn-primary ml-1" type="submit">Buy</button>
 	  		</div>
 	  	</div>
-		
+			<div v-if="logs.length !== 0" class="row pt-2">
+				<div class="col-12">
+					<ul class="list-group">
+					  <li v-for="log in logs"
+					  		:class="{
+						  		'list-group-item-success': log.status == 'ok',
+						  		'list-group-item-secondary': log.status == 'cnl'
+					  		}"
+					  		class="list-group-item ">{{ log.text }}
+					  		<span class="log-date">
+					  			{{ log.date | date }}
+					  		</span>
+					  </li>
+					</ul>
+				</div>
+			</div>
 			<!-- Modal -->
 			<div 
 				v-if="modalVisibility"
@@ -110,18 +125,16 @@
 				  				<li>Year: {{ car.year }}</li>
 				  			</ul>
 				  			<p class='modal-price'><strong>Price: {{ car.price }} €</strong></p>
-			        	
-				  		
 			      </div>
 			      <div class="modal-footer">
-			        <button @click="modalVisibility = false" type="button" class="btn btn-secondary" data-dismiss="modal">Buy</button>
-			        <button  @click="modalVisibility = false" type="button" class="btn btn-primary">Cancel order</button>
+			        <button @click="newOrder" type="button" class="btn btn-primary" >Buy</button>
+			        <button  @click="cancelOrder" type="button" class="btn btn-secondary">Cancel order</button>
 			      </div>
 			    </div>
 			  </div>
-			</div>
-			<div @click="modalVisibility = false" v-if="modalVisibility" class="modal-backdrop fade show"></div>
-		</div>
+			</div> <!-- Modal end -->
+			<div v-if="modalVisibility" class="modal-backdrop fade show"></div>
+		</div><!-- app end -->
 	
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

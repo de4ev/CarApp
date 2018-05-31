@@ -1,6 +1,7 @@
 function car(make, model, year, vType, fType, color, price, owner, phone, img) {
 	return {make, model, year, vType, fType, color, price, owner, phone, img}
-}
+};
+function log(text, status, date = new Date()) { return {text, status, date}}
 var cars = [
 	car('Audi', 'Q3', '2015', 'Off-road', 'Diesel', 'White', 11200, 'Henry', '+1-255-457-1478', 'img/Audi.png'),
 	car('Volvo', 'S60', '2014', 'Sedan', 'Petrol', 'Brown', 3600, 'Alex', '+1-202-456-1441', 'img/Volvo.png'),
@@ -23,13 +24,22 @@ var app = new Vue({
 		activeCarIndex: 0,
 		phoneVisibility: false,
 		search: '',
-		modalVisibility: false
+		modalVisibility: false,
+		logs: []
 	},
 	methods: {
 		selectCar: function(index){
 			this.car = cars[index];
 			this.activeCarIndex = index;
 			this.phoneVisibility = false;
+		},
+		cancelOrder: function() {
+			this.modalVisibility=false;
+			this.logs.push(log(`Canceled order: ${this.car.make} ${this.car.model}, ${this.car.price}€`, 'cnl'));
+		},
+		newOrder: function() {
+			this.modalVisibility=false;
+			this.logs.push(log(`New order: ${this.car.make} ${this.car.model}, ${this.car.price}€`, 'ok'));
 		}
 	},
 	computed: {
@@ -44,7 +54,11 @@ var app = new Vue({
 			return this.cars.filter(function(car) {
 				return car.make.toLowerCase().indexOf(self.search.toLowerCase()) > -1 || car.model.toLowerCase().indexOf(self.search.toLowerCase()) > -1
 			})
-
+		}
+	},
+	filters: {
+		date: function(date) {
+			return date.toLocaleString()
 		}
 	}
 }) 
