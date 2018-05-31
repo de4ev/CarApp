@@ -42,7 +42,7 @@ var app = new Vue({
 		filteredCars() {
 			const self = this;
 			return this.cars.filter(function(car) {
-				return car.make.indexOf(self.search) > -1 || car.model.indexOf(self.search) > -1
+				return car.make.toLowerCase().indexOf(self.search.toLowerCase()) > -1 || car.model.toLowerCase().indexOf(self.search.toLowerCase()) > -1
 			})
 
 		}

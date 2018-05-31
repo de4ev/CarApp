@@ -104,14 +104,14 @@
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        <p>
 			        	<ul>
 				        	<li>Make: {{ car.make }}</li>
 				  				<li>Model: {{ car.model }}</li>
 				  				<li>Year: {{ car.year }}</li>
 				  			</ul>
-				  			<strong>Price: {{ car.price }} €</strong>
-				  		</p>
+				  			<p class='modal-price'><strong>Price: {{ car.price }} €</strong></p>
+			        	
+				  		
 			      </div>
 			      <div class="modal-footer">
 			        <button @click="modalVisibility = false" type="button" class="btn btn-secondary" data-dismiss="modal">Buy</button>

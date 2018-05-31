@@ -35,3 +35,8 @@ body {
 
 .modal {
   display: block; }
+
+.modal-price {
+  padding-left: 20px;
+  margin-bottom: 0;
+  font-size: 24px; }
