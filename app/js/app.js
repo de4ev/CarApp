@@ -35,11 +35,11 @@ var app = new Vue({
 		},
 		cancelOrder: function() {
 			this.modalVisibility=false;
-			this.logs.push(log(`Canceled order: ${this.car.make} ${this.car.model}, ${this.car.price}€`, 'cnl'));
+			this.logs.unshift(log(`Canceled order: ${this.car.make} ${this.car.model}, ${this.car.price}€`, 'cnl'));
 		},
 		newOrder: function() {
 			this.modalVisibility=false;
-			this.logs.push(log(`New order: ${this.car.make} ${this.car.model}, ${this.car.price}€`, 'ok'));
+			this.logs.unshift(log(`New order: ${this.car.make} ${this.car.model}, ${this.car.price}€`, 'ok'));
 		}
 	},
 	computed: {
