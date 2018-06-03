@@ -46,9 +46,6 @@ var app = new Vue({
 		phoneBtnText: function() {
 			return this.phoneVisibility ? 'Hide phone' : 'Show phone' 
 		},
-		phoneLink: function() {
-			return 'tel:' + this.car.phone
-		},
 		filteredCars() {
 			const self = this;
 			return this.cars.filter(function(car) {

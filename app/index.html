@@ -66,12 +66,13 @@
 	  			<h3>
 	  				<strong>Price: {{ car.price }} €</strong>
 	  			</h3>
-	  			<div class="phone-block">
-	  				<a
-			  			v-if="phoneVisibility"
-			  			v-bind:href="phoneLink"
-			  			class="phoneNumber" >{{ car.phone }}
-		  			</a>
+	  			<div class="phone-block pt-2">
+	  				<transition name="slideFade">
+	  					<p
+				  			v-if="phoneVisibility"
+				  			class="phoneNumber" >{{ car.phone }}
+		  				</p>
+		  			</transition>
 		  		</div>
 	  			<button 
 	  				v-on:click="phoneVisibility = !phoneVisibility"
@@ -99,41 +100,45 @@
 				</div>
 			</div>
 			<!-- Modal -->
-			<div 
-				v-if="modalVisibility"
-				class="modal fade show"
-				tabindex="-1"
-				role="dialog"
-				>
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title">Do you want to buy this car?</h5>
-			        <button 
-			       		@click="modalVisibility = false"
-			        	type="button"
-			        	class="close"
-			        	data-dismiss="modal"
-			        	aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			        	<ul>
-				        	<li>Make: {{ car.make }}</li>
-				  				<li>Model: {{ car.model }}</li>
-				  				<li>Year: {{ car.year }}</li>
-				  			</ul>
-				  			<p class='modal-price'><strong>Price: {{ car.price }} €</strong></p>
-			      </div>
-			      <div class="modal-footer">
-			        <button @click="newOrder" type="button" class="btn btn-primary" >Buy</button>
-			        <button  @click="cancelOrder" type="button" class="btn btn-secondary">Cancel order</button>
-			      </div>
-			    </div>
-			  </div>
-			</div> <!-- Modal end -->
-			<div v-if="modalVisibility" class="modal-backdrop fade show"></div>
+			<transition name="modal">
+				<div 
+					v-if="modalVisibility"
+					class="modal fade show"
+					tabindex="-1"
+					role="dialog"
+					>
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title">Do you want to buy this car?</h5>
+				        <button 
+				       		@click="modalVisibility = false"
+				        	type="button"
+				        	class="close"
+				        	data-dismiss="modal"
+				        	aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        	<ul>
+					        	<li>Make: {{ car.make }}</li>
+					  				<li>Model: {{ car.model }}</li>
+					  				<li>Year: {{ car.year }}</li>
+					  			</ul>
+					  			<p class='modal-price'><strong>Price: {{ car.price }} €</strong></p>
+				      </div>
+				      <div class="modal-footer">
+				        <button @click="newOrder" type="button" class="btn btn-primary" >Buy</button>
+				        <button  @click="cancelOrder" type="button" class="btn btn-secondary">Cancel order</button>
+				      </div>
+				    </div>
+				  </div>
+				</div> <!-- Modal end -->
+			</transition>
+			<transition name="fade">
+				<div v-if="modalVisibility" class="modal-backdrop fade show"></div>
+			</transition>
 		</div><!-- app end -->
 	
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>

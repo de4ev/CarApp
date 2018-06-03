@@ -38,4 +38,29 @@ body
 	margin-bottom: 0
 	font-size: 24px
 
+//***********  Animation  ***********
+.slideFade-enter-active,
+.slideFade-leave-active
+	transition: all .3s
+.slideFade-enter, .slideFade-leave-to
+	opacity: 0
+	transform: translateY(20px)
+.modal-enter-active,
+.modal-leave-active
+	transition: all .5s
+.modal-enter, .modal-leave-to
+	opacity: 0
+	transform: translateY(-400px)
+.fade-enter-active
+	animation: 0.4s fade forwards
+.fade-leave-active
+	animation: 0.4s fade reverse
+.fade-enter, .fade-leave-to
+	opacity: 0
+@keyframes fade
+	from
+		opacity: 0
+	to 
+		opacity: 0.5
+
 @import "media" 
