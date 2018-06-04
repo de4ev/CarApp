@@ -41,7 +41,11 @@
 					  	v-on:click="selectCar(index)"
 					  	v-bind:class="{active: activeCarIndex === index}"
 					  	class="list-group-item list-group-item-action pointer"
-					  	>{{ car.make }} {{ car.model }}</li>
+					  	>{{ car.make }} {{ car.model }}
+					  </li>
+					  <p 
+					  	v-if="filteredCars.length === 0"
+					  ><strong>Not found</strong></p>
 					</ul>
 
 
